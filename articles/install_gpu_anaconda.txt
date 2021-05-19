@@ -1,0 +1,84 @@
+ubuntu18.04安裝nvidia-driver、anaconda、tensorflow
+
+一、 安裝 nvidia-driver
+(1) 確認有無gpu，有的話有哪種版本的nvidia-driver可以直接更新
+ubuntu-drivers devices
+
+(2) 自動選擇其中最新版本更新，並自動輔助一些麻煩事情
+sudo ubuntu-drivers autoinstall
+
+(3) 重新啟動
+sudo reboot
+
+(4) 確認有無讀到gpu
+nvidia-smi
+
+reference: https://github.com/nathtest/Tutorial-Ubuntu-18.04-Install-Nvidia-driver-and-CUDA-and-CUDNN-and-build-Tensorflow-for-gpu/blob/master/README.md
+
+二、安裝anaconda (使用anaconda，不需要自己安裝cuda、cudnn等等配備，也不用自行去匹配gpu顯示卡、nivida-driver、cuda、cudnn之間的關係)
+(1) 去anaconda官網下載安裝檔，https://www.anaconda.com/products/individual
+
+(2) bash 安裝檔
+bash Anaconda3-2019.10-Linux-x86_64.sh
+
+(2) 基本上一直enter，anaconda會詢問要把檔案存放在哪，一般來說會使用默認的使用者家目錄下
+Anaconda3 will now be installed into this location:
+/home/ubuntu/anaconda3
+
+  - Press ENTER to confirm the location
+  - Press CTRL-C to abort the installation
+  - Or specify a different location below
+
+[/home/your_user_name/anaconda3] >>>
+
+(3)安裝完成後，會詢問是否要執行 conda init 的設定，建議輸入 yes 讓他自動設定：
+Do you wish the installer to initialize Anaconda3
+by running conda init? [yes|no]
+[no] >>>
+
+選擇yes的話，每次開新的terminal時，它會自動導進conda的(base)環境設定，就是command line最左邊會一直出現(base)。
+解決方法是：
+# 取消自動載入 conda 的 base 環境，command line最左邊就不會一直出現(base)
+conda config --set auto_activate_base false
+
+(4)如果需要進入(base)環境設定時，
+# conda activate 環境名稱
+conda activate base
+
+reference: https://officeguide.cc/ubuntu-linux-install-anaconda-data-science-platform-tutorial/
+
+以上就完成最最基本的machine learning環境設定了，
+未來可以在anaconda中建立各種不同環境，conda install 各種需要用的package(如各種版本的tensorflow)，舉個簡單例子，
+my_environment1擁有python3.7搭配tensorflow2.0，my_environment2擁有python3.8搭配tensorflow2.2，等等不同環境。
+
+以下紀錄如何操控anaconda，來安裝tensorflow
+
+三、 anaconda 語法
+(1) 建立新的虛擬環境(先以my_environment1當作環境名字)
+conda create --name my_environment1 python=3.7
+此時anaconda會幫你準備好python3.7在my_environment1環境中。
+
+(2) 進入 my_environment1
+conda activate my_environment1
+
+(3) 近來 my_environment1 之後，看看anaconda貼心的裝了哪些東西
+conda list
+
+(4) 接下來安裝我們最關心的tensorflow2.0，記得要安裝gpu版的話後面要加gpu，
+conda install tensorflow-gpu=2.0 
+
+anaconda會很貼心的把相對應的cuda(cuda_toolkit) version、cudnn version自動安裝起來，
+我們可以使用 conda list，來查看cuda_toolkit、cudnn的版本資訊(之前的python3.7版資訊也會在其中)
+
+(5) 測試tensorflow有無安裝成功，讀到顯卡
+輸入 python
+輸入 from tensorflow.python.client import device_lib
+輸入 print(device_lib.list_local_devices())
+查看顯卡型號是否有對上實體電腦。(像我的是 GTX 1660 Ti)
+
+(6) 離開 my_environment1 環境的方法
+conda deactivate
+
+reference: https://medium.com/@johnnyliao/%E5%9C%A8win10%E4%B8%8A%E5%AE%89%E8%A3%9Dcuda-toolkit-cudnn-tensorflow-gpu-1-12%E4%BB%A5%E4%B8%8B%E5%8F%8A1-13%E4%BB%A5%E4%B8%8A-%E7%9A%84%E5%AE%89%E8%A3%9D%E7%B6%93%E9%A9%97%E5%88%86%E4%BA%AB-c792953b316f
+
+

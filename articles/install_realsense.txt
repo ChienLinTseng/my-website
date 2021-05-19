@@ -1,0 +1,8 @@
+參考這個詳細網站
+https://www.codeleading.com/article/38242520780/
+
+解鎖功能 rs_rgbd.launch
+sudo apt-get install ros-melodic-rgbd-launch
+
+執行camera
+roslaunch realsense2_camera rs_camera.launch

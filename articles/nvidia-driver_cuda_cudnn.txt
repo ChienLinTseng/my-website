@@ -1,0 +1,31 @@
+
+ubuntu18.04
+此篇文章用來紀錄 nvidia-driver、cuda、cudnn之間的關係。
+
+刪除線
+{
+(1) 先查看自己電腦上的顯卡型號，到nvidia官網查詢目前相對應的nvidia-driver
+https://www.nvidia.com.tw/Download/index.aspx?lang=tw
+}
+
+(1) 查看有哪種版本的nvidia-driver可以更新，以recommend為更新對象
+ubuntu-drivers devices
+以我為例，我的更新對象為 nivia-driver-460
+
+實際安裝nvidia-driver後，發現他的版本為 nivia-driver-460.73.01
+
+(2) nvidia-driver和cuda(cuda_toolkit)之間的關係
+到nvidia官網查看兩者版本對應關係
+https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
+以我的nivia-driver-460.73.01 為例，我可以安裝cuda11.2.2 update2這個版本(>= 460.32.03)
+
+要安裝的話，可以在這個連結找到歷代cuda_toolkit ( nvidia把這個網頁藏的很難找 )
+https://developer.nvidia.com/cuda-toolkit-archive
+
+
+(3) 有了cuda_toolkit後，決定cudnn版本
+這裡可以挑選cuda對應的cudnn
+https://developer.nvidia.com/rdp/cudnn-archive
+
+(4) tensorflow、python、cudnn、cuda_toolkit 之間關係
+https://www.tensorflow.org/install/source?hl=zh-tw#gpu
