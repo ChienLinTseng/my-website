@@ -20,8 +20,8 @@
             .article-container
             {
                 margin-top: 80px;
-                font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
-                margin-left: 20%;
+                font-family: "serif"; /*宋體*/
+                margin-left: 18%;
             }
             .article-date
             {
@@ -34,6 +34,7 @@
             }
             .article-list
             {
+                margin-left: 3%;
                 padding: 5px;
                 line-height: 150%;
             }
@@ -41,22 +42,73 @@
             {
                 color: lightcoral;
             }
+            ul
+            {
+                list-style: none;
+            }
+            ul.cover-bar-list
+            {
+                float: right;
+                margin-right: 50px;
+                font-weight: bold;
+                font-family: "MS Serif";
+                text-decoration: none;
+            }
+            ul.cover-bar-list li
+            {
+                /*new find selector*/                
+                display: inline-block;
+                padding: 2px;
+                
+
+            }
+            /*
+            ul.cover-bar-list li:hover
+            {
+                background-color:rgba(150, 166, 238, 0.883);
+                
+                color:black;
+                
+            }*/
+            ul.cover-bar-list li a.cover-link-unstyled
+            {
+                text-decoration: none;
+                padding: 5px;
+                color: black;
+            }
+            ul.cover-bar-list li a.cover-link-unstyled:hover
+            {
+                background-color:rgba(12, 13, 15, 0.883);
+                opacity: 0.7;
+                color:white;
+                
+            }
+
         </style>
     </head>
     <body class="body">
-        <img class="cover" src="images/cover5.jpg" />
+        <img class="cover" src="images/cover5.jpg" ></img>
+
+        <ul class="cover-bar-list">
+            <li><a class="cover-link-unstyled" href="homepage.html">Home</a></li>
+            <li><a class="cover-link-unstyled" href="">Categories</a></li>
+            <li><a class="cover-link-unstyled" href="">Archives</a></li>
+            <li><a class="cover-link-unstyled" href="website_growth.html">Growth</a></li>
+            <li><a class="cover-link-unstyled" href="">About</a></li>
+        </ul>
+
 
         <div class="article-container">
             <div class="article-date">2021年5月20日(四)</div>
             <div class="article-list">
                 <a class="link-unstyled" href="articles/install_gpu_anaconda.txt">
-                    install_gpu_anaconda.txt
+                    深度學習工具：安裝nvidia-driver與anaconda
                 </a><br/>
                 <a class="link-unstyled" href="articles/nvidia-driver_cuda_cudnn.txt">
-                    nvidia-driver_cuda_cudnn.txt
+                    深度學習筆記：nvidia-driver、cuda、cudnn之間的連帶關係
                 </a><br/>
                 <a class="link-unstyled" href="articles/install_realsense.txt">
-                    install_realsense.txt
+                    安裝筆記：realsense D400系列(D435、D455)
                 </a><br/>
             </div>
         </div>
